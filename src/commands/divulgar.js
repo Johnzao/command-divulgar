@@ -34,7 +34,7 @@ module.exports = class Divulgar {
             let duracaoVideo = `**${video.duration.minutes}** minutos e **${video.duration.seconds}** segundos`
             let subs = YoutubeChannel.data.items[0].statistics.subscriberCount;
             let views = YoutubeChannel.data.items[0].statistics.viewCount;
-            let channel = this.client.config.configGeral.channelDivulgar;
+            let channel = await this.client.guilds.cache.get(message.guild.id).channels.cache.get(this.client.config.configGeral.channelDivulgar);
 
             let embed = new MessageEmbed()
                 .setAuthor({ name: `O Youtuber ${message.author.username} está divulgando um vídeo!`, iconURL: message.author.displayAvatarURL() })
