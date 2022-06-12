@@ -28,18 +28,19 @@ module.exports = class Divulgar {
             let video = await Youtube.getVideo(url).catch(() => { })
             if (!video) return message.reply("O URL informado está incorreto! Envie-o corretamente.")
             let YoutubeChannel = await axios.get(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${video.raw.snippet.channelId}&key=${this.client.config.youtubeAPI}`)
+            let videoViews = await axios.get(`https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${video.raw.id}&key=${this.client.config.youtubeAPI}`)
             let tilleVideo = video.raw.snippet.title;
             let authorTheVideo = video.raw.snippet.channelTitle;
             let thumbnailVideo = video.thumbnails.medium.url;
             let duracaoVideo = `**${video.duration.minutes}** minutos e **${video.duration.seconds}** segundos`
             let subs = YoutubeChannel.data.items[0].statistics.subscriberCount;
-            let views = YoutubeChannel.data.items[0].statistics.viewCount;
+            let views = videoViews.data.items[0].statistics.viewCount;
             let channel = await this.client.guilds.cache.get(message.guild.id).channels.cache.get(this.client.config.configGeral.channelDivulgar);
 
             let embed = new MessageEmbed()
                 .setAuthor({ name: `O Youtuber ${message.author.username} está divulgando um vídeo!`, iconURL: message.author.displayAvatarURL() })
                 .setTitle(`${tilleVideo}`)
-                .setDescription(`O vídeo foi postado no canal **${authorTheVideo}** com a quantidade de inscritos **${subs}**.\nO vídeo consta com ${duracaoVideo} de duração e está com ${views} views!`)
+                .setDescription(`O vídeo foi postado no canal **${authorTheVideo}** com a quantidade de inscritos **${subs}**.\nO vídeo consta com ${duracaoVideo} de duração e está com **${views}** views!`)
                 .setURL(`${url}`)
                 .setThumbnail(`${thumbnailVideo}`)
             channel.send({ embeds: [embed] })
