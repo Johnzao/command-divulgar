@@ -2,7 +2,7 @@
 
 Para utilizar o comando, é necessário utilizar a database mongoose e digitar os seguintes comandos no terminal:
 
-  ▫️ npm i discord.js\
+  ▫️ npm i discord.js
 
   ▫️ npm i mongoose
 
