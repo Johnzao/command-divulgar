@@ -1,0 +1,15 @@
+{
+    "token": "TOKEN_DO_BOT",
+    "defaultPrefix": "PREFIX_DO_BOT",
+    "youtubeAPI": "KEY_DA_API_DO_YOUTUBE",
+    "owners": [
+        "SEU_ID"
+    ],
+    "connect_string": "ID_DA_SUA_MONGODB",
+    "configGeral": {
+        "guildId": "ID_DA_GUILDA",
+        "channelDivulgar": "ID_DO_CANAL_DE_DIVULGAR",
+        "cargoYoutuber": "ID_DO_CARGO_YOUTUBER",
+        "delayDivulgar": 86400000
+    }
+}
